@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 /**
  * Created by Zielony on 2016-07-19.
  */
-public class DynamicTests {
+public class DynamicTestsTest {
 
     @TestFactory
     public Stream<DynamicTest> createTests() {
@@ -25,8 +25,8 @@ public class DynamicTests {
                 .range(0, 10)
                 .boxed()
                 .map((Long element) -> dynamicTest(
-                        "Can remove " + element + " from itself",
-                        () -> {
+                        "Can remove " + element + " from itself", () -> {
+                            System.out.println("Running dynamic test for element: " + element);
                             Assertions.assertEquals(element - element, 0L);
                         }
                     )

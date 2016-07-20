@@ -15,14 +15,13 @@ apply plugin: 'org.junit.platform.gradle.plugin'
 
 sourceCompatibility = 1.8
 
-
-
 repositories {
     mavenCentral()
 }
 
-
 dependencies {
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.1'
     testCompile group: 'org.junit', name: 'junit5-api', version: '5.0.0-ALPHA'
     testCompile group: 'org.junit', name: 'junit5-engine', version: '5.0.0-ALPHA'
     testCompile group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.0.0-M1'
@@ -31,4 +30,20 @@ dependencies {
     testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.0.0-M1'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.0.0-M1'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0-M1'
+}
+
+junitPlatform {
+    // platformVersion '1.0.0-SNAPSHOT'
+    engines {
+        // include 'junit-jupiter', 'junit-vintage'
+        // exclude 'custom-engine'
+    }
+    tags {
+        // include 'fast'
+        //exclude 'slow'
+    }
+    includeClassNamePattern '.*Test'
+    // enableStandardTestTask true
+    // reportsDir "build/test-results/junit-platform" // this is the default
+    logManager 'org.apache.logging.log4j.jul.LogManager'
 }

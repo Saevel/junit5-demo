@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 /**
  * Created by Zielony on 2016-07-19.
  */
-public class ParametricTests {
+public class ParametricTest {
 
     private Random random = new Random();
 
@@ -32,11 +32,11 @@ public class ParametricTests {
                 .boxed()
                 .map((Long element) -> Math.abs(generator.next() % 10))
                 .map((Long number) -> dynamicTest(
-                        "Is defined for " + number,
-                        () -> {
+                        "Is defined for " + number, () -> {
+                            System.out.print("\n\nRunning parametric tests with param: " + number);
                             fibonacci.applyAsLong(number);
                         }
-                        )
+                    )
                 );
     }
 }
